@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 function Clock() {
   const [time, setTime] = useState(new Date());
@@ -16,10 +17,21 @@ function Clock() {
   };
 
   return (
-    <div>
+    <ClockStyledDiv>
       <h1>{time.toLocaleTimeString("en-US", options)}</h1>
-    </div>
+    </ClockStyledDiv>
   );
 }
 
 export default Clock;
+
+const ClockStyledDiv = styled.div`
+  position: absolute;
+  color: #fff;
+  font-size: 120px;
+  font-weight: 700;
+  text-shadow: 2px 2px 3px #000;
+  right: -50%;
+  left: -50%;
+  top: 35%;
+`;

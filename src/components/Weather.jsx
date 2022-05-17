@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-
+import styled from "styled-components";
 function Weather() {
   const [coords, setSaveCoords] = useState();
   const [temp, setTemp] = useState();
@@ -24,6 +24,7 @@ function Weather() {
   }
 
   function requestCoords() {
+    // 유저의 위치정보를 가져옴. (위도/경도)
     navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
   }
 
@@ -46,13 +47,28 @@ function Weather() {
   useEffect(() => {
     requestCoords();
   }, []);
+
   return (
-    <div>
+    <WeatherStyleBox>
+      <span>
+        {temp} @ {weather}
+      </span>
       <span>{city}</span>
-      <span>@{temp}</span>
-      <span>{weather}</span>
-    </div>
+    </WeatherStyleBox>
   );
 }
 
 export default Weather;
+
+const WeatherStyleBox = styled.div`
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  color: #fff;
+  font-size: 15px;
+  text-shadow: 2px 2px 3px #000;
+  span {
+    display: block;
+    text-align: right;
+  }
+`;
